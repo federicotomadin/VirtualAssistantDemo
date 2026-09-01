@@ -1,1 +1,3 @@
-console.log('Happy developing ✨')
+import { startBot } from "./bot";
+
+startBot();

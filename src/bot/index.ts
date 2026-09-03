@@ -4,12 +4,21 @@ import { transcribeAudio } from "../stt";
 import { runAgent } from "../agent";
 import { AgentContext } from "../agent/tools";
 import { MockEmailProvider } from "../services/email";
+import { GmailEmailProvider } from "../services/gmail";
 import { MockInfoProvider } from "../services/info";
 
 const bot = new Bot(config.telegramBotToken);
 
+const emailProvider =
+  config.emailAddress && config.emailAppPassword
+    ? new GmailEmailProvider({
+        user: config.emailAddress,
+        appPassword: config.emailAppPassword,
+      })
+    : new MockEmailProvider();
+
 const agentContext: AgentContext = {
-  email: new MockEmailProvider(),
+  email: emailProvider,
   info: new MockInfoProvider(),
 };
 

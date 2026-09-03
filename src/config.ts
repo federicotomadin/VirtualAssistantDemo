@@ -18,4 +18,6 @@ export const config = {
     .split(",")
     .map((id) => id.trim())
     .filter(Boolean),
+  emailAddress: process.env.EMAIL_ADDRESS ?? "",
+  emailAppPassword: process.env.EMAIL_APP_PASSWORD ?? "",
 };
